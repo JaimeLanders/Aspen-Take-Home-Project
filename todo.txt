@@ -1,0 +1,19 @@
+---------------------------------
+Aspen Captital Take Home Project:
+=================================
+
+Provision using cdk
+
+Setup IAM on AWS
+
+Scale project
+	- 3 EC2?
+	- Fargate?
+	- Kubernetes?
+
+Documentation:
+	- Instructions
+	- Code
+	- README
+
+GitHub Actions CI/CD
