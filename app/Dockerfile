@@ -10,7 +10,7 @@ COPY package*.json ./
 # copy start shell script to keep docker container running
 COPY start.sh ./
 
-# install npm 
+# install npm
 RUN apk add --update npm
 
 # run npm install in our local machine
