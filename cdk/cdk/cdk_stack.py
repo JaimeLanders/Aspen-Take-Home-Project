@@ -48,9 +48,17 @@ class CdkStack(Stack):
             'allow http from anywhere'
         )
 
-        # TODO: Add internet gateway
+        # handle = ec2.InitServiceRestartHandle(),
+        # init = ec2.CloudFormationInit.from_elements(
+        #     ec2.InitFile.from_string("~/cdk.txt", "This got written during instance startup"),
+        #     ec2.InitCommand.shell_command(
+        #         "git clone --branch 9-setup-provisioning-using-cdk https://github.com/JaimeLanders/Aspen-Take-Home-Project.git ~/Aspen-Take-Home-Project"),
+        #     ec2.InitCommand.shell_command("chmod +700 -R ~/Aspen-Take-Home-Project"),
+        #     ec2.InitCommand.shell_command("~/Aspen-Take-Home-Project/install.sh"),
+        #     ec2.InitCommand.shell_command("~/Aspen-Take-Home-Project/start.sh"),
+        # )
 
-        ec2.Instance(self, "{}_Instance".format(name),
+        instance = ec2.Instance(self, "{}_Instance".format(name),
                      vpc=vpc,
                      vpc_subnets=ec2.SubnetSelection(
                          subnet_type=ec2.SubnetType.PUBLIC
@@ -63,10 +71,11 @@ class CdkStack(Stack):
                          volume=ec2.BlockDeviceVolume.ebs(8)
                      )],
                      key_name=key,
-                     init=ec2.CloudFormationInit.from_elements(
-                         ec2.InitCommand.shell_command("git clone --branch 9-setup-provisioning-using-cdk https://github.com/JaimeLanders/Aspen-Take-Home-Project.git ~/Aspen-Take-Home-Project"),
-                         ec2.InitCommand.shell_command("chmod +700 -R ~/Aspen-Take-Home-Project"),
-                         ec2.InitCommand.shell_command("~/Aspen-Take-Home-Project/install.sh"),
-                         ec2.InitCommand.shell_command("~/Aspen-Take-Home-Project/start.sh"),
-                       ),
-                    )
+#                     init=init,
+                     )
+
+        file_path = "./cdk/user-data.sh"
+        with open(file_path) as f:
+            user_data = f.read()
+
+        instance.add_user_data(user_data)
