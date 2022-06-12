@@ -67,7 +67,6 @@ class CdkStack(Stack):
 #                         ec2.InitCommand.shell_command("git clone --branch 9-setup-provisioning-using-cdk https://github.com/JaimeLanders/Aspen-Take-Home-Project.git"),
 #                         ec2.InitCommand.shell_command("chmod +700 -R ~/Aspen-Take-Home-Project"),
 #                         ec2.InitCommand.shell_command("~/Aspen-Take-Home-Project/setup.sh"),
-#                         ec2.InitCommand.shell_command("sudo docker network create -d bridge aspen"),
-#                         ec2.InitCommand.shell_command("sudo docker-compose scale app=2 nginx=1")
+#                         ec2.InitCommand.shell_command("~/Aspen-Take-Home-Project/start.sh"),
 #                       ),
                     )

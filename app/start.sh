@@ -1,5 +1,10 @@
 #!/bin/sh
 
+[ ! -f ./.env ]
+then
+    touch ./.env
+fi
+
 npm start
 
 while true
