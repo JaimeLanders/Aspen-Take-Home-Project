@@ -14,8 +14,15 @@ class CdkStack(Stack):
 
         name = "Aspen"
         key = "default"
+        ami = "ami-0ee8244746ec5d6d4"
 
         # The code that defines your stack goes here
+
+        machine_image = ec2.MachineImage.generic_linux({
+            "us-west-2": ami
+        })
+
+        instance_type = ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE2, ec2.InstanceSize.MICRO)
 
         vpc = ec2.Vpc(self, "{}_VPC".format(name),
                       cidr="10.0.0.0/16",
@@ -41,14 +48,6 @@ class CdkStack(Stack):
             'allow http from anywhere'
         )
 
-        instance_type = ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE2, ec2.InstanceSize.MICRO)
-
-        ami = "ami-0ee8244746ec5d6d4"
-
-        machine_image = ec2.MachineImage.generic_linux({
-            "us-west-2": ami
-        })
-
         ec2.Instance(self, "{}_Instance".format(name),
                      vpc=vpc,
                      security_group=security_group,
@@ -58,12 +57,12 @@ class CdkStack(Stack):
                          device_name="/dev/sda1",
                          volume=ec2.BlockDeviceVolume.ebs(8)
                      )],
-                     keyName=key,
-                     init=ec2.CloudFormationInit.from_elements(
-                         ec2.InitCommand.shell_command("git clone --branch 9-setup-provisioning-using-cdk https://github.com/JaimeLanders/Aspen-Take-Home-Project.git"),
-                         ec2.InitCommand.shell_command("sudo +700 -R ~/Aspen-Take-Home-Project"),
-                         ec2.InitCommand.shell_command("~/Aspen-Take-Home-Project/setup.sh"),
-                         ec2.InitCommand.shell_command("sudo docker network create -d bridge aspen"),
-                         ec2.InitCommand.shell_command("sudo docker-compose scale app=2 nginx=1")
-        ),
-        )
+                     key_name=key,
+#                     init=ec2.CloudFormationInit.from_elements(
+#                         ec2.InitCommand.shell_command("git clone --branch 9-setup-provisioning-using-cdk https://github.com/JaimeLanders/Aspen-Take-Home-Project.git"),
+#                         ec2.InitCommand.shell_command("chmod +700 -R ~/Aspen-Take-Home-Project"),
+#                         ec2.InitCommand.shell_command("~/Aspen-Take-Home-Project/setup.sh"),
+#                         ec2.InitCommand.shell_command("sudo docker network create -d bridge aspen"),
+#                         ec2.InitCommand.shell_command("sudo docker-compose scale app=2 nginx=1")
+#                       ),
+                    )
