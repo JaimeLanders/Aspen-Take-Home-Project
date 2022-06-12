@@ -1,6 +1,6 @@
----------------------------------
-Aspen Captital Take Home Project:
-=================================
+--------------------------------
+Aspen Captital Take Home Project
+================================
 
 Provision using cdk
 
@@ -17,3 +17,7 @@ Documentation:
 	- README
 
 GitHub Actions CI/CD
+
+HTTPS
+
+Use ECR / Docker.io

@@ -48,6 +48,8 @@ class CdkStack(Stack):
             'allow http from anywhere'
         )
 
+        # TODO: Add internet gateway
+
         ec2.Instance(self, "{}_Instance".format(name),
                      vpc=vpc,
                      security_group=security_group,
