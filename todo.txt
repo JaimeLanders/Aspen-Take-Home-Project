@@ -1,0 +1,33 @@
+--------------------------------
+Aspen Captital Take Home Project
+================================
+
+Provision using cdk
+
+Add unique name to cdk stack
+
+Setup IAM on AWS?
+
+Scale project
+	- ECS?
+	- Fargate?
+	- Kubernetes?
+
+Documentation:
+	- Instructions
+	- Code
+	- README
+	
+--------	
+Stretch:
+========
+
+GitHub Actions CI/CD
+
+HTTPS
+
+Use ECR / Docker.io
+
+Use yaml for resources
+
+Add environmental variables for cdk
