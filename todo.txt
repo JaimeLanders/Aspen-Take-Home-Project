@@ -9,7 +9,7 @@ Add unique name to cdk stack
 Setup IAM on AWS?
 
 Scale project
-	- 3 EC2?
+	- ECS?
 	- Fargate?
 	- Kubernetes?
 
@@ -28,9 +28,6 @@ HTTPS
 
 Use ECR / Docker.io
 
+Use yaml for resources
 
-
-git clone --branch 9-setup-provisioning-using-cdk https://github.com/JaimeLanders/Aspen-Take-Home-Project.git
-chmod +700 -R ./Aspen-Take-Home-Project
-./Aspen-Take-Home-Project/setup.sh
-./Aspen-Take-Home-Project/start.sh
+Add environmental variables for cdk
