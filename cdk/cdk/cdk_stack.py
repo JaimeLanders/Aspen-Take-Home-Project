@@ -52,6 +52,9 @@ class CdkStack(Stack):
 
         ec2.Instance(self, "{}_Instance".format(name),
                      vpc=vpc,
+                     vpc_subnets=ec2.SubnetSelection(
+                         subnet_type=ec2.SubnetType.PUBLIC
+                     ),
                      security_group=security_group,
                      instance_type=instance_type,
                      machine_image=machine_image,
