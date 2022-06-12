@@ -63,10 +63,10 @@ class CdkStack(Stack):
                          volume=ec2.BlockDeviceVolume.ebs(8)
                      )],
                      key_name=key,
-#                     init=ec2.CloudFormationInit.from_elements(
-#                         ec2.InitCommand.shell_command("git clone --branch 9-setup-provisioning-using-cdk https://github.com/JaimeLanders/Aspen-Take-Home-Project.git"),
-#                         ec2.InitCommand.shell_command("chmod +700 -R ~/Aspen-Take-Home-Project"),
-#                         ec2.InitCommand.shell_command("~/Aspen-Take-Home-Project/install.sh"),
-#                         ec2.InitCommand.shell_command("~/Aspen-Take-Home-Project/start.sh"),
-#                       ),
+                     init=ec2.CloudFormationInit.from_elements(
+                         ec2.InitCommand.shell_command("git clone --branch 9-setup-provisioning-using-cdk https://github.com/JaimeLanders/Aspen-Take-Home-Project.git ~/Aspen-Take-Home-Project"),
+                         ec2.InitCommand.shell_command("chmod +700 -R ~/Aspen-Take-Home-Project"),
+                         ec2.InitCommand.shell_command("~/Aspen-Take-Home-Project/install.sh"),
+                         ec2.InitCommand.shell_command("~/Aspen-Take-Home-Project/start.sh"),
+                       ),
                     )
