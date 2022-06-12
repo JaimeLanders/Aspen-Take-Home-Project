@@ -4,7 +4,9 @@ Aspen Captital Take Home Project
 
 Provision using cdk
 
-Setup IAM on AWS
+Add unique name to cdk stack
+
+Setup IAM on AWS?
 
 Scale project
 	- 3 EC2?
@@ -15,9 +17,20 @@ Documentation:
 	- Instructions
 	- Code
 	- README
+	
+--------	
+Stretch:
+========
 
 GitHub Actions CI/CD
 
 HTTPS
 
 Use ECR / Docker.io
+
+
+
+git clone --branch 9-setup-provisioning-using-cdk https://github.com/JaimeLanders/Aspen-Take-Home-Project.git
+chmod +700 -R ./Aspen-Take-Home-Project
+./Aspen-Take-Home-Project/setup.sh
+./Aspen-Take-Home-Project/start.sh
