@@ -40,14 +40,12 @@ class CdkStack(Stack):
 
         if key_name != "":
             security_group.add_ingress_rule(
-    #            ec2.Peer.any_ipv4(),
                 ec2.Peer.ipv4(ip),
                 ec2.Port.tcp(22),
                 'allow ssh from {}'.format(ip)
             )
 
         security_group.add_ingress_rule(
-#            ec2.Peer.any_ipv4(),
             ec2.Peer.ipv4(ip),
             ec2.Port.tcp(80),
             'allow http from {}'.format(ip)
