@@ -51,6 +51,12 @@ class CdkStack(Stack):
             'allow http from {}'.format(ip)
         )
 
+        security_group.add_ingress_rule(
+            ec2.Peer.ipv4(ip),
+            ec2.Port.tcp(443),
+            'allow https from {}'.format(ip)
+        )
+
         instance = ec2.Instance(self, "{}_Instance".format(name),
                      vpc=vpc,
                      vpc_subnets=ec2.SubnetSelection(

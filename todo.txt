@@ -2,8 +2,6 @@
 Aspen Captital Take Home Project
 ================================
 
-Add unique name to cdk stack
-
 Setup IAM on AWS?
 
 Scale project
@@ -24,13 +22,11 @@ GitHub Actions CI/CD
 
 HTTPS
 
-Use ECR / Docker.io
-
 Use yaml for resources
 
-Add environmental variables for cdk
-
 Add logging
+
+Containerize cdk deploy
 
 -----------
 References:
@@ -41,3 +37,5 @@ https://ashwin9798.medium.com/nginx-with-docker-and-node-js-a-beginners-guide-43
 https://medium.com/@vinodkrane/microservices-scaling-and-load-balancing-using-docker-compose-78bf8dc04da9
 
 https://bobbyhadz.com/blog/aws-cdk-ec2-instance-example
+
+https://bobbyhadz.com/blog/aws-cdk-ec2-userdata-example#:~:text=Adding%20User%20Data%20to%20an,addUserData%20method%20on%20the%20instance.&text=Copied!
