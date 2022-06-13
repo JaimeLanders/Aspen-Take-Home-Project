@@ -5,6 +5,7 @@ from aws_cdk import (
     aws_ec2 as ec2,
 )
 from constructs import Construct
+from decouple import config
 
 
 class CdkStack(Stack):
@@ -12,14 +13,16 @@ class CdkStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        name = "Aspen"
-        key = "default"
-        ami = "ami-0ee8244746ec5d6d4"
-
         # The code that defines your stack goes here
 
+        name = "Aspen"
+        key_name = config('KEY')
+        region = config('REGION') if config('REGION') != "" else "us-west-2"
+        ip = config('IP4') if config('IP4') != "" else "0.0.0.0/0"
+        ami = "ami-0ee8244746ec5d6d4"
+
         machine_image = ec2.MachineImage.generic_linux({
-            "us-west-2": ami
+            region: ami
         })
 
         instance_type = ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE2, ec2.InstanceSize.MICRO)
@@ -35,28 +38,18 @@ class CdkStack(Stack):
 
         security_group = ec2.SecurityGroup(self, "{}_SG".format(name), vpc=vpc)
 
-        # my_security_group.add_ingress_rule(ec2.Peer.any_ipv4(), ec2.Port.tcp(22), "allow ssh access from the world")
-        security_group.add_ingress_rule(
-            ec2.Peer.any_ipv4(),
-            ec2.Port.tcp(22),
-            'allow ssh from anywhere'
-        )
+        if key_name != "":
+            security_group.add_ingress_rule(
+                ec2.Peer.ipv4(ip),
+                ec2.Port.tcp(22),
+                'allow ssh from {}'.format(ip)
+            )
 
         security_group.add_ingress_rule(
-            ec2.Peer.any_ipv4(),
+            ec2.Peer.ipv4(ip),
             ec2.Port.tcp(80),
-            'allow http from anywhere'
+            'allow http from {}'.format(ip)
         )
-
-        # handle = ec2.InitServiceRestartHandle(),
-        # init = ec2.CloudFormationInit.from_elements(
-        #     ec2.InitFile.from_string("~/cdk.txt", "This got written during instance startup"),
-        #     ec2.InitCommand.shell_command(
-        #         "git clone --branch 9-setup-provisioning-using-cdk https://github.com/JaimeLanders/Aspen-Take-Home-Project.git ~/Aspen-Take-Home-Project"),
-        #     ec2.InitCommand.shell_command("chmod +700 -R ~/Aspen-Take-Home-Project"),
-        #     ec2.InitCommand.shell_command("~/Aspen-Take-Home-Project/install.sh"),
-        #     ec2.InitCommand.shell_command("~/Aspen-Take-Home-Project/start.sh"),
-        # )
 
         instance = ec2.Instance(self, "{}_Instance".format(name),
                      vpc=vpc,
@@ -70,8 +63,7 @@ class CdkStack(Stack):
                          device_name="/dev/sda1",
                          volume=ec2.BlockDeviceVolume.ebs(8)
                      )],
-                     key_name=key,
-#                     init=init,
+                     key_name=key_name,
                      )
 
         file_path = "./cdk/user-data.sh"

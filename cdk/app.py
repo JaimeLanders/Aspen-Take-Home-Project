@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
+import calendar
 import os
+import time
 
 import aws_cdk as cdk
 
@@ -23,6 +25,8 @@ CdkStack(app, "CdkStack",
     #env=cdk.Environment(account='123456789012', region='us-east-1'),
 
     # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
+
+        stack_name="AspenStack{}".format(calendar.timegm(time.gmtime()))
     )
 
 app.synth()
