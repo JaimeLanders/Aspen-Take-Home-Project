@@ -30,51 +30,77 @@ The general workflow for building and deploying the application to AWS:
 
 1. Clone the project into desired location:
 
-```git clone https://github.com/JaimeLanders/Aspen-Take-Home-Project.git .```
+```bash
+git clone https://github.com/JaimeLanders/Aspen-Take-Home-Project.git .
+```
 
 2. Create .env in the cdk subfolder (.env_example provided for ease) to customize the deployment.  
 
 3. Bootstrap and deploy the application to the desired account and region in the cdk subfolder:
 
-```cd ./cdk```
+```bash
+cd ./cdk
+```
 
-```cdk synth```
+```bash
+cdk synth
+```
 
-```cdk boostrap```
+```bash
+cdk boostrap
+```
 
-```cdk deploy```
+```bash
+cdk deploy
+```
 
 4. Tear down the instance
 
-```cdk destroy```
+```bash
+cdk destroy
+```
 
 ## Getting Started Deploying Locally:
 The general workflow for building and deploying the application locally:
 
 1. To deploy the project locally, first create the docker network:
 
-```sudo docker network create -d bridge aspen```
+```bash
+sudo docker network create -d bridge aspen
+```
 
 2. Then use docker-compose to build and deploy the project in the project root: 
 
-```sudo docker-compose scale app=2 nginx=1```
+```bash
+sudo docker-compose scale app=2 nginx=1
+```
 
 3. Next, curl or visit https://localhost or http://localhost in your browser:
 
-```curl -k https://localhost```
+```bash
+curl -k https://localhost
+```
 
-```curl http://localhost```
+```bash
+curl http://localhost
+```
 
 4. You should see something similar to the the following in your browser and/or terminal:
 
-```{"hostname":"a7c40351918a","msg":"Hello world!","nodeVersion":"v18.2.0","pid":43,"uptime":7867.478466045}```
+```bash
+{"hostname":"a7c40351918a","msg":"Hello world!","nodeVersion":"v18.2.0","pid":43,"uptime":7867.478466045}
+```
 
-```{"hostname":"4abc1126b96c","msg":"Hello world!","nodeVersion":"v18.2.0","pid":42,"uptime":7876.017861105}```
+```bash
+{"hostname":"4abc1126b96c","msg":"Hello world!","nodeVersion":"v18.2.0","pid":42,"uptime":7876.017861105}
+```
 
 **Note** that the hostname is the app container and they will alternate between both containers due to the NGINX load  balancer.
 
 5. To tear down the application, you can run the ```stop.sh``` helper script or run the following commands:
 
-```sudo docker-compose down```
+```bash
+sudo docker-compose down
+```
 
 ### Visit the [cdk](https://github.com/JaimeLanders/Aspen-Take-Home-Project/tree/main/cdk) [app](https://github.com/JaimeLanders/Aspen-Take-Home-Project/tree/main/app), [nginx](https://github.com/JaimeLanders/Aspen-Take-Home-Project/tree/main/nginx) and project subfolders for more details and instructions.  
