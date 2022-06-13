@@ -7,9 +7,10 @@ import aws_cdk as cdk
 
 from cdk.cdk_stack import CdkStack
 
+stack_name="AspenStack{}".format(calendar.timegm(time.gmtime()))
 
 app = cdk.App()
-CdkStack(app, "CdkStack",
+CdkStack(app, stack_name,
     # If you don't specify 'env', this stack will be environment-agnostic.
     # Account/Region-dependent features and context lookups will not work,
     # but a single synthesized template can be deployed anywhere.
@@ -26,7 +27,7 @@ CdkStack(app, "CdkStack",
 
     # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
 
-        stack_name="AspenStack{}".format(calendar.timegm(time.gmtime()))
+    #    stack_name="AspenStack{}".format(calendar.timegm(time.gmtime()))
     )
 
 app.synth()
