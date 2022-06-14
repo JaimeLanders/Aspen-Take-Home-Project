@@ -15,4 +15,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build and deploy the app Docker image
+      working-directory: ./app
       run: ./app/buildimage.sh
