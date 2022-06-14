@@ -55,3 +55,4 @@ jobs:
     - name: Build and deploy the nginx Docker image
       working-directory: ./nginx
       run: ./buildimage.sh
+      run: rm -rf ./certs 
