@@ -26,3 +26,6 @@ cdk.out
 
 # IDE
 .idea
+
+# Dangerous
+rootkey

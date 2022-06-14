@@ -8,11 +8,6 @@ Scale project
 	- ECS?
 	- Fargate?
 	- Kubernetes?
-
-Documentation:
-	- Instructions
-	- Code
-	- README
 	
 --------	
 Stretch:
@@ -20,13 +15,9 @@ Stretch:
 
 GitHub Actions CI/CD
 
-HTTPS
-
 Use yaml for resources
 
 Add logging
-
-Containerize cdk deploy
 
 -----------
 References:
