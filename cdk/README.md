@@ -7,12 +7,48 @@ This project uses the CDK implemented in python to provision an EC2 instance and
 
 
 ## Pre-Requisites 
-1. Make sure you have [aws-cli](https://aws.amazon.com/cli/) installed and configured before using CDK to deploy the project.  If you want to use a separate account and region you may set the variables in .env in the cdk project subfolder. 
+1. Make sure you have [aws-cli](https://aws.amazon.com/cli/) installed and configured before using CDK to deploy the project.  If you want to use a separate account and region you may set the variables in .env in the cdk project subfolder. See [this](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) for more information. 
 
 2. Make sure you have python3 and venv installed for use with the cdk.
 
+3. If you want to run CDK in the provided docker container, make sure you have Docker installed
 
-## Getting Started
+
+## Getting Started in Docker 
+The option is provided to build and run this project in a Docker container to make it easy to get going and isolate the environment from existing installations.
+
+1. Build the Docker image: 
+
+```bash
+docker build -t cdk ./
+```
+
+2. Run the docker container in interactive tty mode to issue commands in CDK usage:
+
+```bash
+docker run -it cdk bash 
+```
+
+**Note:** I didn't use the --rm option to keep this container available for future use.  Otherwise, these steps need to be repeated.
+
+3. Configure the aws cli using the account name, region, and access key pair.
+
+```bash
+aws configure 
+```
+
+4. Copy example .env and set environment variables:
+
+```bash
+cp ./.env-example ./.env 
+vi .env
+```
+
+
+Now you can proceed to CDK usage below.
+
+
+## Getting Started in Python Virtual Environment
 This project is set up like a standard Python project.  The initialization
 process also creates a virtualenv within this project, stored under the `.venv`
 directory.  To create the virtualenv it assumes that there is a `python3`
@@ -44,13 +80,25 @@ Once the virtualenv is activated, you can install the required dependencies.
 pip install -r requirements.txt
 ```
 
-At this point you can now synthesize the CloudFormation template for this code.
+Copy example .env and set environment variables:
+
+```bash
+cp ./.env-example ./.env 
+vim .env
+```
+
+Now you can proceed to CDK usage below.
+
+
+## CDK Usage
+
+At this point, you can now synthesize the CloudFormation template for this code.
 
 ```bash
 cdk synth
 ```
 
-To delploy the stack to AWS, bootstrap before the first run and then deploy:
+To deploy the stack to AWS, bootstrap before the first run and then deploy:
 
 ```bash
 cdk boostrap
@@ -81,3 +129,6 @@ command.
  * `cdk docs`        open CDK documentation
 
 Enjoy!
+
+
+

@@ -1,3 +1,4 @@
+import decouple
 from aws_cdk import (
     # Duration,
     Stack,
@@ -6,7 +7,6 @@ from aws_cdk import (
 )
 from constructs import Construct
 from decouple import config
-
 
 """
 This class is for provisioning an ec2 instance using cdk for use with the aspen apps and nginx reverse proxy 
