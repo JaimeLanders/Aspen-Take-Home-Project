@@ -7,7 +7,7 @@ import aws_cdk as cdk
 
 from cdk.cdk_stack import CdkStack
 
-stack_name="AspenStack{}".format(calendar.timegm(time.gmtime()))
+stack_name = "AspenStack{}".format(calendar.timegm(time.gmtime()))
 
 app = cdk.App()
 CdkStack(app, stack_name,
@@ -26,8 +26,6 @@ CdkStack(app, stack_name,
     #env=cdk.Environment(account='123456789012', region='us-east-1'),
 
     # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
-
-    #    stack_name="AspenStack{}".format(calendar.timegm(time.gmtime()))
     )
 
 app.synth()
