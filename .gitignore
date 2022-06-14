@@ -1,6 +1,12 @@
+# default gitignore for the project repo
 # Node/Express
 node_modules/
 .env
+
+# NGINX
+certs/
+*.crt
+*.key
 
 # Python
 .venv

@@ -1,16 +1,18 @@
+# docker compose configuration for building and deploying the app, nginx instances and the network
 version: "3.8"
 services:
     app:
-        build:
-            context: ./app
+        image:
+           jaimelanders/aspen-app
         ports:
           - "3000"
     nginx:
         restart: always
-        build:
-            context: ./nginx
+        image:
+           jaimelanders/aspen-nginx
         ports:
             - "80:80"
+            - "443:443"
 networks:
   default:
     driver: bridge

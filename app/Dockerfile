@@ -1,4 +1,5 @@
-# pull the Node.js Docker image
+# dockerfile for building the express app
+# pull the alpine Docker image
 FROM alpine
 
 # create the directory inside the container
