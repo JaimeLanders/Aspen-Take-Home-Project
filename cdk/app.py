@@ -6,8 +6,11 @@ import time
 import aws_cdk as cdk
 
 from cdk.cdk_stack import CdkStack
+from decouple import config
 
 stack_name = "AspenStack{}".format(calendar.timegm(time.gmtime()))
+region = config('REGION')
+account = config('ACCOUNT')
 
 app = cdk.App()
 CdkStack(app, stack_name,
@@ -24,6 +27,7 @@ CdkStack(app, stack_name,
     # want to deploy the stack to. */
 
     #env=cdk.Environment(account='123456789012', region='us-east-1'),
+        env=cdk.Environment(account=account, region=region),
 
     # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
     )
