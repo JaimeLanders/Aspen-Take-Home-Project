@@ -22,3 +22,6 @@ jobs:
     - name: Build and deploy the app Docker image
       working-directory: ./app
       run: ./buildimage.sh
+    - name: Build and deploy the nginx Docker image
+      working-directory: ./nginx
+      run: ./buildimage.sh
