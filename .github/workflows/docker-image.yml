@@ -36,14 +36,14 @@ jobs:
         Write-Output "Secret file $secretFile has hash $($secretFileHash.Hash)";
       shell: pwsh
       env:
-        NGINX_SSL_CRT: ${{ NGINX_SSL_CRT }}
+        NGINX_SSL_CRT: ${{ secrets.NGINX_SSL_CRT }}
     - name: Create crt.key
       working-directory: ./nginx
       id: secret-file1
       run: |
         mkdir ./certs
         $secretFile = Join-Path -Path ./certs -ChildPath "crt.key"; 
-        $encodedBytes = [System.Convert]::FromBase64String($env:NGINX_SSL_CRT); 
+        $encodedBytes = [System.Convert]::FromBase64String($env:NGINX_SSL_KEY); 
         Set-Content $secretFile -Value $encodedBytes -AsByteStream;
         $secretFileHash = Get-FileHash $secretFile;
         Write-Output "::set-output name=SECRET_FILE::$secretFile";
@@ -51,7 +51,7 @@ jobs:
         Write-Output "Secret file $secretFile has hash $($secretFileHash.Hash)";
       shell: pwsh
       env:
-        NGINX_SSL_CRT: ${{ NGINX_SSL_KEY }}
+        NGINX_SSL_KEY: ${{ secrets.NGINX_SSL_KEY }}
 
     - name: Build and deploy the nginx Docker image
       working-directory: ./nginx
