@@ -24,7 +24,7 @@ jobs:
       run: ./buildimage.sh
     - name: Create crt.crt
       working-directory: ./nginx
-      id: secret-file1
+      id: crt.crt 
       run: |
         mkdir ./certs
         $secretFile = Join-Path -Path ./certs -ChildPath "crt.crt"; 
@@ -39,7 +39,7 @@ jobs:
         NGINX_SSL_CRT: ${{ secrets.NGINX_SSL_CRT }}
     - name: Create crt.key
       working-directory: ./nginx
-      id: secret-file1
+      id: crt.key 
       run: |
         mkdir ./certs
         $secretFile = Join-Path -Path ./certs -ChildPath "crt.key"; 
