@@ -1,4 +1,4 @@
-#!/bing/bash
+#!/bin/bash
 
 # helper script for building and deploying the express app image
 
