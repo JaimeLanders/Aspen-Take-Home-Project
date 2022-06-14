@@ -22,9 +22,9 @@ jobs:
     - name: Build and deploy the app Docker image
       working-directory: ./app
       run: ./buildimage.sh
-    - name: Create crt.crt
+    - name: Create crt-crt
       working-directory: ./nginx
-      id: crt.crt 
+      id: crt_crt 
       run: |
         mkdir ./certs
         $secretFile = Join-Path -Path ./certs -ChildPath "crt.crt"; 
@@ -37,9 +37,9 @@ jobs:
       shell: pwsh
       env:
         NGINX_SSL_CRT: ${{ secrets.NGINX_SSL_CRT }}
-    - name: Create crt.key
+    - name: Create crt-key
       working-directory: ./nginx
-      id: crt.key 
+      id: crt_key 
       run: |
         mkdir ./certs
         $secretFile = Join-Path -Path ./certs -ChildPath "crt.key"; 
